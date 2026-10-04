@@ -14,6 +14,7 @@
     "isolatedModules": true,
     "jsx": "react-jsx",
     "incremental": true,
+    "rootDirs": [".", "generated"],
     "plugins": [
       {
         "name": "next"
@@ -29,7 +30,11 @@
     ".next/dev/types/**/*.ts",
     "**/*.mts",
     ".storybook/main.ts",
-    ".storybook/preview.tsx"
+    ".storybook/preview.tsx",
+    "**/*.module.css"
   ],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules"],
+  "cmkOptions": {
+    "enabled": true
+  }
 }

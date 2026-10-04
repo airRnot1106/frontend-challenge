@@ -5,6 +5,7 @@ export default defineConfig({
   ...ultracite,
   ignorePatterns: [
     ...(ultracite.ignorePatterns ?? []),
+    'generated/**',
     'public/mockServiceWorker.js',
   ],
   singleQuote: true,

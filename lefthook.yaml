@@ -24,3 +24,8 @@ pre-commit:
         - '**/*.jsx'
         - '**/*.tsx'
       stage_fixed: true
+    - name: stylelint
+      run: pnpm exec stylelint {staged_files} --fix
+      glob:
+        - '**/*.css'
+      stage_fixed: true
