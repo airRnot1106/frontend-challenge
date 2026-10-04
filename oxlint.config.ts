@@ -15,7 +15,7 @@ export default defineConfig({
     ...(core.ignorePatterns ?? []),
     'public/mockServiceWorker.js',
   ],
-  jsPlugins: jsPlugins.jsPlugins,
+  jsPlugins: jsPlugins.jsPlugins ?? null,
   options: {
     typeAware: true,
     typeCheck: true,
