@@ -1,5 +1,24 @@
 pre-commit:
   jobs:
+    - name: github actions checks
+      group:
+        parallel: true
+        jobs:
+          - name: actionlint
+            glob: '.github/workflows/*.{yml,yaml}'
+            run: mise exec -- actionlint {staged_files}
+          - name: ghasec
+            glob: '.github/workflows/*.{yml,yaml}'
+            run: mise exec -- ghasec {staged_files}
+          - name: ghalint
+            glob: '.github/workflows/*.{yml,yaml}'
+            run: mise exec -- ghalint run
+          - name: pinact
+            glob: '.github/workflows/*.{yml,yaml}'
+            run: mise exec -- pinact run --fix=false --no-api {staged_files}
+          - name: zizmor
+            glob: '.github/workflows/*.{yml,yaml}'
+            run: mise exec -- zizmor {staged_files}
     - name: oxlint
       run: pnpm exec oxlint --fix --no-error-on-unmatched-pattern {staged_files}
       glob:
