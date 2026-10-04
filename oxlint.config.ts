@@ -62,6 +62,7 @@ export default defineConfig({
   ignorePatterns: [
     ...(core.ignorePatterns ?? []),
     'generated/**',
+    'src/lib/api/generated/**',
     'public/mockServiceWorker.js',
   ],
   jsPlugins: jsPlugins.jsPlugins ?? null,

@@ -9,6 +9,8 @@
     "generate": "run-s -c generate:*",
     "generate:cmk": "cmk",
     "generate:next": "next typegen",
+    "generate:openapi": "openapi-ts",
+    "generate:msw": "msw init public --no-save",
     "dev": "run-p dev:*",
     "dev:cmk": "cmk --watch",
     "dev:next": "next dev",
@@ -28,7 +30,8 @@
     "test:node": "vitest run --project=node",
     "test:storybook": "vitest run --project=storybook",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "openapi:fetch": "curl -sf http://localhost:3000/api-json -o openapi/openapi.json && oxfmt openapi/openapi.json"
   },
   "dependencies": {
     "@base-ui/react": "^1.8.0",
@@ -42,6 +45,8 @@
     "@chromatic-com/storybook": "latest",
     "@css-modules-kit/codegen": "^1.4.0",
     "@css-modules-kit/stylelint-plugin": "^1.4.0",
+    "@faker-js/faker": "^10.6.0",
+    "@hey-api/openapi-ts": "^0.99.0",
     "@markuplint/jsx-parser": "^5.0.1",
     "@markuplint/react-spec": "^5.0.1",
     "@storybook/addon-a11y": "10.6.0",
@@ -61,6 +66,8 @@
     "eslint-plugin-storybook": "^10.6.0",
     "lefthook": "^2.1.14",
     "markuplint": "^5.0.1",
+    "msw": "^2.15.0",
+    "msw-storybook-addon": "^3.0.3",
     "npm-run-all2": "^9.0.3",
     "oxfmt": "^0.70.0",
     "oxlint": "^1.85.0",

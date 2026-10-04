@@ -3,12 +3,25 @@ import addonA11y from '@storybook/addon-a11y';
 import addonDocs from '@storybook/addon-docs';
 import addonVitest from '@storybook/addon-vitest';
 import { definePreview } from '@storybook/nextjs-vite';
+import addonMsw from 'msw-storybook-addon';
+import { setupWorker } from 'msw/browser';
 import { INITIAL_VIEWPORTS } from 'storybook/viewport';
+
+import { handlers } from '../src/lib/api/mocks/handlers';
 
 import '../src/app/globals.css';
 
 export default definePreview({
-  addons: [addonA11y(), addonDocs(), addonVitest()],
+  addons: [
+    addonA11y(),
+    addonDocs(),
+    addonVitest(),
+    addonMsw(async () => {
+      const worker = setupWorker(...handlers);
+      await worker.start({ onUnhandledRequest: 'bypass', quiet: true });
+      return worker;
+    }),
+  ],
   decorators: [withServerFunctionMocks],
   parameters: {
     a11y: {

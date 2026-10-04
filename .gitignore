@@ -47,3 +47,9 @@ storybook-static
 
 # css-modules-kit
 /generated
+
+# hey-api
+/src/lib/api/generated
+
+# msw
+/public/mockServiceWorker.js
