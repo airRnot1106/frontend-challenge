@@ -9,8 +9,10 @@
     "build": "next build",
     "start": "next start",
     "check": "run-s check:*",
+    "check:markup": "markuplint \"src/**/*.{html,jsx,tsx}\" --problem-only",
     "check:ultracite": "ultracite check",
     "fix": "run-s fix:*",
+    "fix:markup": "markuplint \"src/**/*.{html,jsx,tsx}\" --fix --problem-only",
     "fix:ultracite": "ultracite fix"
   },
   "dependencies": {
@@ -19,12 +21,15 @@
     "react-dom": "19.2.8"
   },
   "devDependencies": {
+    "@markuplint/jsx-parser": "^5.0.1",
+    "@markuplint/react-spec": "^5.0.1",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "babel-plugin-react-compiler": "1.0.0",
     "eslint-config-next": "16.3.8",
     "lefthook": "^2.1.14",
+    "markuplint": "^5.0.1",
     "npm-run-all2": "^9.0.3",
     "oxfmt": "^0.70.0",
     "oxlint": "^1.85.0",

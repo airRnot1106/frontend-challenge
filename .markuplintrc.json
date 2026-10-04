@@ -1,0 +1,35 @@
+{
+  "extends": ["markuplint:recommended"],
+  "excludeFiles": ["./src/**/*.stories.tsx"],
+  "parser": {
+    "\\.[jt]sx?$": "@markuplint/jsx-parser"
+  },
+  "specs": {
+    "\\.[jt]sx?$": "@markuplint/react-spec"
+  },
+  "pretenders": {
+    "scan": [
+      {
+        "files": "src/**/*.tsx"
+      }
+    ]
+  },
+  "overrideMode": "merge",
+  "overrides": {
+    "src/**/*.{jsx,tsx}": {
+      "rules": {
+        "code-styles/case-sensitive-attr-name": false,
+        "security/no-event-handler-attr": {
+          "rules": {
+            "no-event-handler-attr": {
+              "value": true,
+              "options": {
+                "ignore": ["/^on[A-Z]/"]
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
