@@ -9,8 +9,41 @@ import vitest from 'ultracite/oxlint/vitest';
 
 const jsPlugins = selectJsPlugins(['react-doctor']);
 
+const storybook = defineConfig({
+  jsPlugins: [{ name: 'storybook', specifier: 'eslint-plugin-storybook' }],
+  overrides: [
+    {
+      files: [
+        '**/*.stories.{ts,tsx,js,jsx,mjs,cjs}',
+        '**/*.story.{ts,tsx,js,jsx,mjs,cjs}',
+      ],
+      rules: {
+        'storybook/await-interactions': 'error',
+        'storybook/context-in-play-function': 'error',
+        'storybook/default-exports': 'error',
+        'storybook/hierarchy-separator': 'warn',
+        'storybook/no-redundant-story-name': 'warn',
+        'storybook/no-renderer-packages': 'error',
+        'storybook/prefer-pascal-case': 'warn',
+        'storybook/story-exports': 'error',
+        'storybook/use-storybook-expect': 'error',
+        'storybook/use-storybook-testing-library': 'error',
+      },
+    },
+  ],
+});
+
 export default defineConfig({
-  extends: [core, react, next, vitest, nextJsPlugins, antiSlop, jsPlugins],
+  extends: [
+    core,
+    react,
+    next,
+    vitest,
+    nextJsPlugins,
+    antiSlop,
+    jsPlugins,
+    storybook,
+  ],
   ignorePatterns: [
     ...(core.ignorePatterns ?? []),
     'public/mockServiceWorker.js',
