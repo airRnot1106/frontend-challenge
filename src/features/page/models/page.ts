@@ -45,6 +45,8 @@ export type WrittenPage = Readonly<InferOutput<typeof WrittenPageSchema>>;
 
 export type Page = UnwrittenPage | WrittenPage;
 
+export type PageInput = InferInput<typeof PageSchema>;
+
 // バックエンドに保存する前のページ。ID と作成日時はバックエンドが決める
 export type NewPage = Readonly<Omit<UnwrittenPage, 'createdAt' | 'pageId'>>;
 
@@ -53,14 +55,12 @@ export const DEFAULT_PAGE_TITLE: PageTitle = Result.unwrap(
 );
 
 export class InvalidPageError extends ErrorFactory({
-  fields: ErrorFactory.fields<{ value: InferInput<typeof PageSchema> }>(),
+  fields: ErrorFactory.fields<{ value: PageInput }>(),
   message: 'Invalid page',
   name: 'InvalidPageError',
 }) {}
 
-const parse = (
-  value: InferInput<typeof PageSchema>,
-): Result.Result<Page, InvalidPageError> =>
+const parse = (value: PageInput): Result.Result<Page, InvalidPageError> =>
   Result.pipe(
     Result.parse(PageSchema, value),
     Result.mapError((issues) => new InvalidPageError({ cause: issues, value })),
