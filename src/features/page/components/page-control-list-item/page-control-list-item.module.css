@@ -1,0 +1,52 @@
+.root {
+  position: relative;
+  display: flex;
+  gap: var(--space-xs);
+  align-items: center;
+  block-size: var(--size-sidebar-item-height);
+  padding-inline: var(--space-xs);
+  border-radius: var(--radius-sm);
+
+  @media (any-hover: hover) {
+    &:hover {
+      background-color: var(--color-bg-light);
+    }
+  }
+
+  &:has(> .link[aria-current='page']) {
+    background-color: var(--color-bg-light);
+  }
+
+  &:has(> .link:focus-visible) {
+    outline: var(--border-width-thick) solid var(--color-border-focus);
+    outline-offset: calc(var(--border-width-thick) * -1);
+  }
+}
+
+.link {
+  flex: 1;
+  min-inline-size: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: var(--font-size-body);
+  color: var(--color-text-regular);
+  white-space: nowrap;
+  text-decoration: none;
+
+  /* 項目全体を押せるよう、リンクの領域を項目いっぱいに広げる。削除ボタンはリンクより後ろにあり、position が指定されているため、この領域より上に重なる */
+  &::after {
+    position: absolute;
+    inset: 0;
+    content: '';
+    border-radius: inherit;
+  }
+
+  &:focus-visible {
+    outline: none;
+  }
+
+  &[aria-current='page'] {
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text-focus);
+  }
+}
