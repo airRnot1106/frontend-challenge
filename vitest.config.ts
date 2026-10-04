@@ -17,6 +17,19 @@ export default defineConfig({
     projects: [
       {
         extends: true,
+        resolve: {
+          alias: {
+            'next/cache': path.join(
+              import.meta.dirname,
+              'src/lib/test/next-cache.ts',
+            ),
+            // Server Components 用のモジュールを読み込めるよう、react-server 環境と同じ空のモジュールに解決する
+            'server-only': path.join(
+              import.meta.dirname,
+              'node_modules/next/dist/compiled/server-only/empty.js',
+            ),
+          },
+        },
         test: {
           environment: 'node',
           include: ['src/**/*.test.{ts,tsx}'],
