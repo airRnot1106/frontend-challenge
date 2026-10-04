@@ -1,0 +1,19 @@
+pre-commit:
+  jobs:
+    - name: oxlint
+      run: pnpm exec oxlint --fix --no-error-on-unmatched-pattern {staged_files}
+      glob:
+        - '*.{js,mjs,cjs,jsx}'
+        - '*.{ts,mts,cts,tsx}'
+      stage_fixed: true
+    - name: oxfmt
+      run: pnpm exec oxfmt --write --no-error-on-unmatched-pattern {staged_files}
+      glob:
+        - '*.{js,mjs,cjs,jsx}'
+        - '*.{ts,mts,cts,tsx}'
+        - '*.{json,jsonc,json5}'
+        - '*.{yaml,yml,toml}'
+        - '*.{html,htm,vue,svelte}'
+        - '*.{css,scss,less}'
+        - '*.{md,markdown,mdx}'
+      stage_fixed: true
