@@ -9,6 +9,20 @@ import vitest from 'ultracite/oxlint/vitest';
 
 const jsPlugins = selectJsPlugins(['react-doctor']);
 
+const reactJs = defineConfig({
+  jsPlugins: [{ name: 'react-js', specifier: 'eslint-plugin-react' }],
+  rules: {
+    'react-js/jsx-sort-props': [
+      'warn',
+      {
+        callbacksLast: true,
+        ignoreCase: true,
+        reservedFirst: true,
+      },
+    ],
+  },
+});
+
 const storybook = defineConfig({
   jsPlugins: [{ name: 'storybook', specifier: 'eslint-plugin-storybook' }],
   overrides: [
@@ -42,6 +56,7 @@ export default defineConfig({
     nextJsPlugins,
     antiSlop,
     jsPlugins,
+    reactJs,
     storybook,
   ],
   ignorePatterns: [
