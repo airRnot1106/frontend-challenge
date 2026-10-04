@@ -1,0 +1,91 @@
+@keyframes --spin {
+  to {
+    rotate: 1turn;
+  }
+}
+
+.root {
+  --_inline-size: var(--button--inline-size, var(--size-button-width));
+  --_block-size: var(--button--block-size, var(--size-button-height));
+  --_padding-inline: var(--button--padding-inline, var(--space-2xs));
+  --_bg: var(--button--bg, var(--color-button-primary));
+  --_bg-hover: var(--button--bg-hover, var(--color-button-primary-hover));
+  --_bg-pressed: var(--button--bg-pressed, var(--color-button-primary-pressed));
+  --_color: var(--button--color, var(--color-text-on-fill));
+  --_border-color: var(--button--border-color, transparent);
+  --_radius: var(--button--radius, var(--radius-sm));
+  --_font-size: var(--button--font-size, var(--font-size-minimum));
+  --_font-weight: var(--button--font-weight, var(--font-weight-bold));
+
+  position: relative;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  inline-size: var(--_inline-size);
+  min-inline-size: var(--_block-size);
+  block-size: var(--_block-size);
+  padding-inline: var(--_padding-inline);
+  font-size: var(--_font-size);
+  font-weight: var(--_font-weight);
+  line-height: var(--line-height-none);
+  color: var(--_color);
+  white-space: nowrap;
+  cursor: pointer;
+  background-color: var(--_bg);
+
+  /* 枠線の有無でアイコンの位置が変わらないよう、枠線のないボタンにも透明な枠線を引く */
+  border: var(--border-width-thick) solid var(--_border-color);
+  border-radius: var(--_radius);
+  transition: background-color var(--duration-fast) var(--ease-out);
+
+  &:focus-visible {
+    outline: var(--border-width-thick) solid var(--color-border-focus);
+    outline-offset: var(--border-width-thick);
+  }
+
+  &:not([data-disabled]) {
+    @media (any-hover: hover) {
+      &:hover {
+        background-color: var(--_bg-hover);
+      }
+    }
+
+    &:active {
+      background-color: var(--_bg-pressed);
+    }
+  }
+
+  &[data-disabled]:not([aria-busy='true']) {
+    cursor: not-allowed;
+    opacity: 0.25;
+  }
+
+  &[aria-busy='true'] {
+    cursor: progress;
+  }
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  /* 処理中もボタンの名前を読み上げられるよう、visibility ではなく opacity で隠す */
+  .root[aria-busy='true'] > & {
+    opacity: 0;
+  }
+}
+
+.spinner {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+}
+
+.spinner > svg {
+  inline-size: var(--size-icon);
+  block-size: var(--size-icon);
+  animation: --spin 1s linear infinite;
+}
