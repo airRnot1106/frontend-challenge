@@ -26,6 +26,7 @@
   "devDependencies": {
     "@markuplint/jsx-parser": "^5.0.1",
     "@markuplint/react-spec": "^5.0.1",
+    "@tsconfig/strictest": "^2.0.8",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
