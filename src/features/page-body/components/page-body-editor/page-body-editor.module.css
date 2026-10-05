@@ -1,0 +1,57 @@
+.root {
+  display: grid;
+  grid-template-columns: subgrid;
+  grid-row: body;
+  grid-column: 1 / -1;
+}
+
+.box {
+  display: grid;
+  grid-template-rows: var(--space-md) auto var(--space-md);
+  grid-template-columns: subgrid;
+  grid-column: field;
+  align-content: start;
+  overflow-y: auto;
+  scrollbar-color: var(--color-scrollbar-thumb) transparent;
+  background-color: var(--color-bg-base);
+  border-radius: var(--radius-md);
+}
+
+.text {
+  grid-row: 2;
+  grid-column: text;
+  font-size: var(--font-size-body);
+  line-height: var(--line-height-body);
+  color: var(--color-text-regular);
+  overflow-wrap: anywhere;
+  white-space: pre-wrap;
+
+  &[data-unwritten] {
+    color: var(--color-text-light);
+  }
+}
+
+.textarea {
+  grid-column: field;
+  padding: calc(var(--space-md) - var(--border-width-thin));
+  font-size: var(--font-size-body);
+  line-height: var(--line-height-body);
+  color: var(--color-text-regular);
+  resize: none;
+  scrollbar-color: var(--color-scrollbar-thumb) transparent;
+  background-color: var(--color-bg-base);
+  border: var(--border-width-thin) solid var(--color-brand);
+  border-radius: var(--radius-md);
+
+  &:focus-visible {
+    outline: none;
+  }
+}
+
+.actions {
+  display: grid;
+  grid-column: actions;
+  grid-auto-flow: column;
+  align-self: start;
+  justify-content: space-between;
+}
