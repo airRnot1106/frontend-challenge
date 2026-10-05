@@ -1,0 +1,13 @@
+.root {
+  display: grid;
+  place-items: center;
+  block-size: 100%;
+  background-color: var(--color-bg-light);
+  border-radius: var(--radius-lg);
+}
+
+.message {
+  font-size: var(--font-size-body);
+  line-height: var(--line-height-body);
+  color: var(--color-text-light);
+}
