@@ -42,7 +42,9 @@ export const Deleting = meta.story({
     const button = canvas.getByRole('button', { name: 'Delete page' });
     await userEvent.click(button);
     await expect(deletePage).toHaveBeenCalledOnce();
-    await expect(deletePage).toHaveBeenCalledWith(PAGE_ID);
+    await expect(deletePage).toHaveBeenCalledWith(PAGE_ID, {
+      isCurrentPage: false,
+    });
     await expect(button).toHaveAttribute('aria-busy', 'true');
 
     await waitFor(async () => {

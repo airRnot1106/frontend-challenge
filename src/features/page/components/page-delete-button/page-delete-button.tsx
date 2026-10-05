@@ -12,16 +12,18 @@ export type PageDeleteButtonProps = Omit<
   'action' | 'aria-label' | 'children' | 'style'
 > & {
   'aria-label': string;
+  current?: boolean;
   pageId: number;
 };
 
 export const PageDeleteButton: FC<PageDeleteButtonProps> = ({
+  current = false,
   pageId,
   ...rest
 }) => (
   <Button
     action={async () => {
-      await deletePage(pageId);
+      await deletePage(pageId, { isCurrentPage: current });
     }}
     style={{
       '--button--bg': 'transparent',

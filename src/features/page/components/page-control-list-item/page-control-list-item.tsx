@@ -29,7 +29,11 @@ export const PageControlListItem: FC<PageControlListItemProps> = ({
       {title}
     </Link>
     {deletable && (
-      <PageDeleteButton aria-label={`${title}を削除する`} pageId={id} />
+      <PageDeleteButton
+        aria-label={`${title}を削除する`}
+        current={current}
+        pageId={id}
+      />
     )}
   </li>
 );
