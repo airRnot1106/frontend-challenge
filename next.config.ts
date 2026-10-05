@@ -22,6 +22,15 @@ const nextConfig: NextConfig = {
   },
   poweredByHeader: false,
   reactCompiler: true,
+  redirects() {
+    return [
+      {
+        destination: '/pages',
+        permanent: false,
+        source: '/',
+      },
+    ];
+  },
   typedRoutes: false,
 };
 
