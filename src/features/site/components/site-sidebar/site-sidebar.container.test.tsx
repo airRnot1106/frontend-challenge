@@ -1,16 +1,14 @@
-import { Result } from '@praha/byethrow';
 import { describe, expect, it } from 'vitest';
 
 import { mocks } from '../../../../lib/api/mocks/handlers';
 import { server } from '../../../../lib/api/mocks/node';
-import { PageId } from '../../models/page-id';
-import { PageControlList } from './page-control-list';
-import { PageControlListContainer } from './page-control-list.container';
+import { SiteSidebar } from './site-sidebar';
+import { SiteSidebarContainer } from './site-sidebar.container';
 
 const CREATED_AT = '2025-04-04T00:00:00.000Z';
 
 describe('ページ一覧の取得に成功したとき', () => {
-  it('取得したページを一覧の表示に渡す', async () => {
+  it('取得したページをサイドバーに渡す', async () => {
     server.use(
       mocks.pick.contentControllerGetAllContentList({
         body: [
@@ -32,10 +30,10 @@ describe('ページ一覧の取得に成功したとき', () => {
       }),
     );
 
-    const { props, type } = await PageControlListContainer({});
+    const { props, type } = SiteSidebarContainer({});
 
-    expect(type).toBe(PageControlList);
-    expect(props.pages).toStrictEqual([
+    expect(type).toBe(SiteSidebar);
+    await expect(props.pagesPromise).resolves.toStrictEqual([
       {
         createdAt: new Date(CREATED_AT),
         kind: 'Unwritten',
@@ -50,19 +48,6 @@ describe('ページ一覧の取得に成功したとき', () => {
         title: '坊ちゃん',
       },
     ]);
-  });
-
-  it('表示中のページと削除できるかをそのまま渡す', async () => {
-    server.use(mocks.pick.contentControllerGetAllContentList({ body: [] }));
-    const currentPageId = Result.unwrap(PageId.parse(1));
-
-    const { props } = await PageControlListContainer({
-      currentPageId,
-      deletable: true,
-    });
-
-    expect(props.currentPageId).toBe(currentPageId);
-    expect(props.deletable).toBeTruthy();
   });
 });
 
@@ -82,6 +67,8 @@ describe('タイトルのないページが含まれるとき', () => {
       }),
     );
 
-    await expect(PageControlListContainer({})).rejects.toThrow('Invalid page');
+    const { props } = SiteSidebarContainer({});
+
+    await expect(props.pagesPromise).rejects.toThrow('Invalid page');
   });
 });

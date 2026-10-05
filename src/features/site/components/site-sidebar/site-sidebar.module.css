@@ -1,0 +1,46 @@
+.root {
+  block-size: 100%;
+}
+
+.layout {
+  display: grid;
+  grid-template:
+    'brand' var(--size-logo-height)
+    '.' var(--space-sm)
+    'navigation' minmax(0, 1fr)
+    'footer' var(--size-action-bar-height)
+    / minmax(0, 1fr);
+  block-size: 100%;
+}
+
+.brand {
+  display: flex;
+  grid-area: brand;
+  gap: var(--space-2xs);
+  align-items: center;
+  font-size: var(--font-size-title);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-none);
+  color: var(--color-text-logo);
+}
+
+.navigation {
+  grid-area: navigation;
+  overflow-y: auto;
+}
+
+.footer {
+  display: flex;
+  grid-area: footer;
+  align-items: center;
+  justify-content: space-between;
+
+  /* ボタンが 1 つのときは右端に置く */
+  &:has(> :only-child) {
+    justify-content: flex-end;
+  }
+
+  /* 背景だけを左右に画面幅まで広げる。はみ出した分は、サイドバーを置く側の overflow: clip で切り取る */
+  border-image: conic-gradient(var(--color-bg-sidebar-footer) 0 0) fill 0 / /0
+    100lvi;
+}
