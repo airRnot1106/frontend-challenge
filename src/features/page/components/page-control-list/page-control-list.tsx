@@ -8,7 +8,7 @@ export type PageControlListProps = Omit<
   ComponentPropsWithRef<'ul'>,
   'children'
 > & {
-  currentPageId?: PageId;
+  currentPageId?: PageId | undefined;
   deletable?: boolean;
   pages: readonly Page[];
 };
