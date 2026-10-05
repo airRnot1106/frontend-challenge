@@ -1,0 +1,35 @@
+.root {
+  display: grid;
+  grid-template:
+    '. . . . . .' var(--space-md)
+    '. sidebar . . main .' minmax(0, 1fr)
+    '. sidebar . . footer .' var(--size-action-bar-height)
+    / var(--space-lg)
+    calc(var(--size-sidebar-width) - var(--space-lg) - var(--space-xs))
+    var(--space-xs) var(--space-lg) minmax(0, 1fr) var(--space-lg);
+  block-size: 100dvh;
+}
+
+/* サイドバーの列全体に縦線を引き、サイドバーのフッターの背景をこの範囲で切り取る */
+.sidebar {
+  display: grid;
+  grid-template: subgrid / subgrid;
+  grid-row: 1 / -1;
+  grid-column: 1 / 4;
+  overflow: clip;
+  border-inline-end: var(--border-width-thin) solid var(--color-border-divider);
+
+  & > * {
+    grid-area: sidebar;
+  }
+}
+
+.main {
+  grid-area: main;
+}
+
+.footer {
+  display: grid;
+  grid-area: footer;
+  align-content: center;
+}
