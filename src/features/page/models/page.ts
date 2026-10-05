@@ -12,9 +12,9 @@ import {
 } from 'valibot';
 import type { InferInput, InferOutput } from 'valibot';
 
-import { PageBody } from './page-body';
+import { PageBody } from '../../page-body/models/page-body';
+import { PageTitle } from '../../page-title/models/page-title';
 import { PageId } from './page-id';
-import { PageTitle } from './page-title';
 
 // API は作成日時を ISO 8601 形式の文字列で返す
 const CreatedAtSchema = pipe(
