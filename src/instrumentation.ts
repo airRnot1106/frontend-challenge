@@ -7,4 +7,6 @@ export const register = async () => {
   }
   const { server } = await import('./lib/api/mocks/node');
   server.listen({ onUnhandledRequest: 'bypass' });
+  // 開発サーバーは読み込み直しのたびに globalThis.fetch を起動時のものに戻すため、モックを通す fetch を別に保持する
+  globalThis.mockedFetch = globalThis.fetch;
 };

@@ -8,4 +8,6 @@ export const API_BASE_URL =
 export const createClientConfig: CreateClientConfig = (config) => ({
   ...config,
   baseUrl: API_BASE_URL,
+  fetch: async (input, init) =>
+    await (globalThis.mockedFetch ?? globalThis.fetch)(input, init),
 });
