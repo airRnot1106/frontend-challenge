@@ -62,6 +62,9 @@
     --color-icon-button-hover: var(--palette-gray-10);
     --color-icon-button-pressed: var(--palette-gray-20);
 
+    /* color: skeleton */
+    --color-skeleton: var(--palette-gray-10);
+
     /* color: scrollbar */
     --color-scrollbar-thumb: var(--palette-gray-30);
 

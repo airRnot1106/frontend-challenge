@@ -1,0 +1,44 @@
+@keyframes --pulse {
+  50% {
+    opacity: 0.4;
+  }
+}
+
+.root {
+  display: grid;
+}
+
+.item {
+  display: grid;
+  align-items: center;
+  block-size: var(--size-sidebar-item-height);
+  padding-inline: var(--space-xs);
+}
+
+.bar {
+  inline-size: 40%;
+  block-size: var(--font-size-body);
+  background-color: var(--color-skeleton);
+  border-radius: var(--radius-xs);
+
+  /* 項目ごとに幅を変え、タイトルの長さがばらつく一覧に見せる */
+  .item:nth-child(5n + 2) > & {
+    inline-size: 70%;
+  }
+
+  .item:nth-child(5n + 3) > & {
+    inline-size: 55%;
+  }
+
+  .item:nth-child(5n + 4) > & {
+    inline-size: 80%;
+  }
+
+  .item:nth-child(5n) > & {
+    inline-size: 45%;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    animation: --pulse 1.5s var(--ease-out) infinite;
+  }
+}
