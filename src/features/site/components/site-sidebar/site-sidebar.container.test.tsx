@@ -51,7 +51,7 @@ describe('ページ一覧の取得に成功したとき', () => {
   });
 });
 
-describe('タイトルのないページが含まれるとき', () => {
+describe('タイトルが 51 文字以上のページが含まれるとき', () => {
   it('ページ一覧の取得を失敗として扱う', async () => {
     server.use(
       mocks.pick.contentControllerGetAllContentList({
@@ -60,7 +60,7 @@ describe('タイトルのないページが含まれるとき', () => {
             body: null,
             createdAt: CREATED_AT,
             id: 1,
-            title: null,
+            title: 'あ'.repeat(51),
             updatedAt: CREATED_AT,
           },
         ],
