@@ -1,0 +1,14 @@
+.root {
+  display: grid;
+
+  /* 枠の左右と文字の左右の線をタイトルと本文で共有し、表示中と編集中で文字の位置を揃える */
+  grid-template:
+    var(--space-md) [title-start] var(--size-button-height) [title-end]
+    var(--space-sm) [body-start] minmax(0, 1fr) [body-end] var(--space-md)
+    / var(--space-md) [field-start] var(--space-md) [text-start] minmax(0, 1fr)
+    [text-end] var(--space-md) [field-end] var(--space-sm) [actions-start]
+    var(--size-button-width) [actions-end] var(--space-md);
+  block-size: 100%;
+  background-color: var(--color-bg-light);
+  border-radius: var(--radius-lg);
+}
