@@ -4,9 +4,9 @@ import { Result } from '@praha/byethrow';
 import { updateTag } from 'next/cache';
 
 import { Api } from '../../../lib/api/generated/sdk.gen';
-import { PageTitle } from '../../page-title/models/page-title';
-import { PAGE_CACHE_TAG } from '../cache-tags';
-import { PageId } from '../models/page-id';
+import { PAGE_CACHE_TAG } from '../../page/cache-tags';
+import { PageId } from '../../page/models/page-id';
+import { PageTitle } from '../models/page-title';
 
 export const editPageTitle = async (
   pageId: number,

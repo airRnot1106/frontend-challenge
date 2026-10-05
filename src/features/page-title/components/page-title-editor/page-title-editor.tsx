@@ -7,8 +7,8 @@ import { useState, useTransition } from 'react';
 import { CancelButton } from '../../../../components/button/cancel/cancel-button';
 import { EditButton } from '../../../../components/button/edit/edit-button';
 import { SaveButton } from '../../../../components/button/save/save-button';
-import { editPageTitle } from '../../../page/actions/edit-page-title';
 import type { Page } from '../../../page/models/page';
+import { editPageTitle } from '../../actions/edit-page-title';
 import { PageTitle } from '../../models/page-title';
 import styles from './page-title-editor.module.css';
 

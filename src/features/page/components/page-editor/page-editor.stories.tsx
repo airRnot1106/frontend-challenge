@@ -3,8 +3,8 @@ import { delay } from 'msw';
 import { expect, waitFor, within } from 'storybook/test';
 
 import preview from '../../../../../.storybook/preview';
-import { editPageBody } from '../../actions/edit-page-body';
-import { editPageTitle } from '../../actions/edit-page-title';
+import { editPageBody } from '../../../page-body/actions/edit-page-body';
+import { editPageTitle } from '../../../page-title/actions/edit-page-title';
 import { Page } from '../../models/page';
 import { PageEditor } from './page-editor';
 
