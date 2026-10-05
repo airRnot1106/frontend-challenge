@@ -85,7 +85,7 @@
     "stylelint-config-standard": "^40.0.0",
     "stylelint-order": "^8.1.1",
     "typescript": "^6.0.3",
-    "ultracite": "7.12.0",
+    "ultracite": "7.12.1",
     "vite": "latest",
     "vitest": "^5.0.2"
   },
