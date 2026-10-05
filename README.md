@@ -14,7 +14,9 @@ pnpm dev
 bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3001](http://localhost:3001) with your browser to see the result.
+
+The backend API (`ncdcdev/recruit-frontend`) listens on port 3000, so the development server uses port 3001. Start the backend before the development server unless `NEXT_PUBLIC_API_MOCKING` is `enabled`.
 
 You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
