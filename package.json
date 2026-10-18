@@ -34,7 +34,7 @@
     "openapi:fetch": "curl -sf http://localhost:3000/api-json -o openapi/openapi.json && oxfmt openapi/openapi.json"
   },
   "dependencies": {
-    "@base-ui/react": "^1.8.0",
+    "@base-ui/react": "^1.9.0",
     "@praha/byethrow": "^0.12.0",
     "@praha/error-factory": "^1.4.1",
     "kiso.css": "^1.2.4",
